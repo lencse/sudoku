@@ -1,8 +1,12 @@
 $main-color: #3c3;
+$text-color: #333;
 $background-color: #fff;
+$table-border-color: #333;
+$table-strong-border: 3px;
 
 body {
     background: $main-color;
+    color: $text-color;
 }
 
 #react-main {
@@ -14,6 +18,34 @@ body {
     background: $background-color;
 }
 
-td.hard {
-    font-weight: bold;
+table#sudoku-table {
+
+    border-collapse: collapse;
+
+    td {
+        border: 1px solid $table-border-color;
+        width: 1.8em;
+        height: 1.8em;
+        text-align: center;
+    }
+
+    td.hard {
+        font-weight: bold;
+    }
+
+    .row-1 {
+        border-top-width: $table-strong-border;
+    }
+
+    .row-3, .row-6, .row-9 {
+        border-bottom-width: $table-strong-border;
+    }
+
+    .col-1 {
+        border-left-width: $table-strong-border;
+    }
+
+    .col-3, .col-6, .col-9 {
+        border-right-width: $table-strong-border;
+    }
 }

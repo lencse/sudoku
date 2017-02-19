@@ -3,6 +3,7 @@ import { Sudoku, pos } from 'afsudoku';
 import SudokuTableCell from './SudokuTableCell';
 import { oneToNxN } from '../util';
 
+
 export interface SudokuTableRowProps {
     sudoku: Sudoku;
     row: number;

@@ -3,6 +3,7 @@ import { Sudoku } from 'afsudoku';
 import SudokuTableRow from './SudokuTableRow'
 import { oneToNxN } from '../util';
 
+
 export interface SudokuTableProps {
     sudoku: Sudoku;
 }
@@ -19,7 +20,7 @@ export default class SudokuTable extends React.Component<SudokuTableProps, {}> {
         );
 
         return (
-            <table>
+            <table id="sudoku-table">
                 <tbody>
                     { rows }
                 </tbody>

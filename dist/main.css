@@ -1,5 +1,6 @@
 body {
-  background: #3c3; }
+  background: #3c3;
+  color: #333; }
 
 #react-main {
   position: absolute;
@@ -9,7 +10,22 @@ body {
   right: 5%;
   background: #fff; }
 
-td.hard {
-  font-weight: bold; }
+table#sudoku-table {
+  border-collapse: collapse; }
+  table#sudoku-table td {
+    border: 1px solid #333;
+    width: 1.8em;
+    height: 1.8em;
+    text-align: center; }
+  table#sudoku-table td.hard {
+    font-weight: bold; }
+  table#sudoku-table .row-1 {
+    border-top-width: 3px; }
+  table#sudoku-table .row-3, table#sudoku-table .row-6, table#sudoku-table .row-9 {
+    border-bottom-width: 3px; }
+  table#sudoku-table .col-1 {
+    border-left-width: 3px; }
+  table#sudoku-table .col-3, table#sudoku-table .col-6, table#sudoku-table .col-9 {
+    border-right-width: 3px; }
 
 /*# sourceMappingURL=main.css.map */
