@@ -1,0 +1,31 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "A sudoku solver webapp",
+  "main": "dist/main.js",
+  "scripts": {
+    "typings-install": "./node_modules/.bin/typings install",
+    "build-typescript": "./node_modules/.bin/tsc -p . --outDir build",
+    "build-webpack": "./node_modules/.bin/webpack",
+    "sass": "sass stylesheets/main.scss dist/main.css",
+    "build": "npm run build-typescript && npm run build-webpack && npm run sass",
+    "test": "node_modules/.bin/mocha dist/test/",
+    "build-test": "npm run build && npm test",
+    "postinstall": "npm run typings-install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lencse/sudoku.git"
+  },
+  "author": "Levente Löki <leventeloki@gmail.com> (https://lokilevente.hu/)",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.1.6",
+    "typings": "^2.1.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
