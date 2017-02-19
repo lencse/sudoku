@@ -3,6 +3,7 @@ import { Sudoku } from 'afsudoku';
 import SudokuTableRow from './SudokuTableRow'
 import { oneToNxN } from '../util';
 
+
 export interface SudokuTableProps {
     sudoku: Sudoku;
 }

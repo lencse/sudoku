@@ -1,15 +1,8 @@
 import * as React from 'react';
-import { SudokuState, SudokuMainState } from  '../Store/SudokuState';
+import Store from  '../Store/Store';
 
-export interface Solver {
-    solve();
-}
 
-export interface ActionBarProps {
-    solver: Solver
-}
-
-export class ActionBar extends React.Component<ActionBarProps, {}> {
+export default class ActionBar extends React.Component<{}, {}> {
 
     render () {
         return (
@@ -22,6 +15,6 @@ export class ActionBar extends React.Component<ActionBarProps, {}> {
     }
 
     private solve() {
-        this.props.solver.solve();
+        Store.getInstance().solve();
     }
 }

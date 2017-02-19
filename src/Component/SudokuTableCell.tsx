@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Cell, Position} from 'afsudoku';
 
+
 export interface SudokuTableCellProps {
     cell: Cell;
     position: Position;

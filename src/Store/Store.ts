@@ -1,37 +1,17 @@
 import * as React from 'react';
 import { Sudoku, pos } from 'afsudoku';
+import SudokuMain from '../Component/SudokuMain';
+import { SudokuMainState } from '../Component/SudokuMain';
 
 
-export interface SudokuMainState {
-    sudoku: Sudoku;
-    solved: Sudoku;
-    showSolved: boolean;
-}
+export default class Store {
 
-//export interface StoreScubscriber {
-//    fire();
-//}
+    private subscriber: SudokuMain;
+    private sudoku: Sudoku;
+    private solved: Sudoku;
+    private showSolved: boolean = false;
 
-export class SudokuState implements SudokuMainState{
-
-    private subscriber: React.Component<any, any>;
-    private _sudoku: Sudoku;
-    private _solved: Sudoku;
-    private _showSolved: boolean = true;
-
-    get sudoku(): Sudoku {
-        return this._sudoku;
-    }
-
-    get solved(): Sudoku {
-        return this._sudoku;
-    }
-
-    get showSolved(): boolean {
-        return this._showSolved;
-    }
-
-    constructor (subscriber: React.Component<any, any>) {
+    constructor (subscriber: SudokuMain) {
         this.subscriber = subscriber;
         let sudoku = Sudoku.create();
         sudoku.put(pos(1, 6), 1); 
@@ -69,14 +49,36 @@ export class SudokuState implements SudokuMainState{
         
         sudoku.put(pos(9, 4), 7);
 
-        this._sudoku = sudoku;
-        this._solved = sudoku.solve();
+        this.sudoku = sudoku;
+        this.solved = sudoku.solve();
+    }
+
+    private static store: Store = null;
+
+    public static createInstance(subscriber: SudokuMain): Store {
+        Store.store = new Store(subscriber);
+        return Store.store;
+    }
+
+    public static getInstance(): Store {
+        return Store.store;
     }
 
     public solve() {
-        this._showSolved = true;
-        console.log(this);
-        this.subscriber.forceUpdate();
+        this.showSolved = true;
+        this.handleUpdate();
+    }
+
+    public getState(): SudokuMainState {
+        return {
+            sudoku: this.sudoku,
+            solved: this.solved,
+            showSolved: this.showSolved
+        };
+    }
+
+    private handleUpdate() {
+        this.subscriber.setState(this.getState());
     }
 
 }
