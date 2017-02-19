@@ -5,11 +5,15 @@ body {
     background: $main-color;
 }
 
-#container {
+#react-main {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 5%;
     right: 5%;
     background: $background-color;
+}
+
+td.hard {
+    font-weight: bold;
 }
