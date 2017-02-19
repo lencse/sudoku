@@ -19,7 +19,7 @@ export default class SudokuTable extends React.Component<SudokuTableProps, {}> {
         );
 
         return (
-            <table>
+            <table id="sudoku-table">
                 <tbody>
                     { rows }
                 </tbody>

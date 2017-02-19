@@ -1,14 +1,39 @@
 import * as React from 'react';
 import { Sudoku, pos } from 'afsudoku';
-import SudokuTable from './SudokuTable';
-import { Solver, ActionBar } from './ActionBar';
-import { SudokuState, SudokuMainState } from  '../Store/SudokuState';
 
-export default class SudokuMain extends React.Component<{}, SudokuMainState> implements Solver {
 
-    constructor () {
-        super();
-                let sudoku = Sudoku.create();
+export interface SudokuMainState {
+    sudoku: Sudoku;
+    solved: Sudoku;
+    showSolved: boolean;
+}
+
+//export interface StoreScubscriber {
+//    fire();
+//}
+
+export class SudokuState implements SudokuMainState{
+
+    private subscriber: React.Component<any, any>;
+    private _sudoku: Sudoku;
+    private _solved: Sudoku;
+    private _showSolved: boolean = true;
+
+    get sudoku(): Sudoku {
+        return this._sudoku;
+    }
+
+    get solved(): Sudoku {
+        return this._sudoku;
+    }
+
+    get showSolved(): boolean {
+        return this._showSolved;
+    }
+
+    constructor (subscriber: React.Component<any, any>) {
+        this.subscriber = subscriber;
+        let sudoku = Sudoku.create();
         sudoku.put(pos(1, 6), 1); 
  
         sudoku.put(pos(2, 1), 7);
@@ -44,28 +69,14 @@ export default class SudokuMain extends React.Component<{}, SudokuMainState> imp
         
         sudoku.put(pos(9, 4), 7);
 
-        this.state = {
-            sudoku: sudoku,
-            solved: sudoku.solve(),
-            showSolved: false
-        };
-    }
-
-    render () {
-        console.log(1, this.state);
-        return (
-            <div>
-                <SudokuTable sudoku={ this.state.showSolved ? this.state.solved : this.state.sudoku } />
-                <ActionBar solver={ this } />
-            </div>
-        );
+        this._sudoku = sudoku;
+        this._solved = sudoku.solve();
     }
 
     public solve() {
-        this.setState({
-            sudoku: this.state.sudoku,
-            solved: this.state.solved,
-            showSolved: true
-        });
+        this._showSolved = true;
+        console.log(this);
+        this.subscriber.forceUpdate();
     }
+
 }
