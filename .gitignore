@@ -4,4 +4,4 @@
 /.sass-cache
 /typings
 /build
-/dist
+#/dist

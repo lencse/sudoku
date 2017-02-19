@@ -1,0 +1,12 @@
+body {
+  background: #3c3; }
+
+#container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  background: #fff; }
+
+/*# sourceMappingURL=main.css.map */
